@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-bg-app: #09090b;
+  --color-panel: #18181b;
+  --color-border: #27272a;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-accent: #e11d48; /* Sophisticated red accent */
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(24, 24, 27, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+  }
+  .glossy-overlay {
+    background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+  }
+  .symbol-glossy {
+    background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 6px -1px rgba(0,0,0,0.5);
+  }
+}
+
+/* Animations kept for game feel, but refined */
+@keyframes spin-blur {
+  0% { transform: translateY(0); filter: blur(0px); }
+  10% { filter: blur(4px); }
+  90% { filter: blur(4px); }
+  100% { transform: translateY(100%); filter: blur(0px); }
+}
+
+.animate-spin-blur {
+  animation: spin-blur 0.15s linear infinite;
+}
+
+@keyframes win-pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(1.2); }
+}
+
+.animate-win-pulse {
+  animation: win-pulse 0.6s ease-in-out infinite;
+}
+
+@keyframes hot-symbol {
+  0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+  50% { filter: hue-rotate(-20deg) brightness(1.5); }
+}
+
+.animate-hot-symbol {
+  animation: hot-symbol 1.5s ease-in-out infinite;
+}
+
+/* Custom Toggle Switch - Refined */
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: var(--color-accent);
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: var(--color-accent);
+}
+.toggle-checkbox {
+  right: 0;
+  z-index: 1;
+  border-color: var(--color-border);
+  transition: all 0.2s;
+}
+.toggle-label {
+  width: 2.5rem;
+  height: 1.25rem;
+  background-color: var(--color-border);
+  border-radius: 9999px;
+  transition: all 0.2s;
+}
